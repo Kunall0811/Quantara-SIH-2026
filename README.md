@@ -26,7 +26,15 @@ It uses **Quantum Particle Swarm Optimization (QPSO)** with a traffic-aware tran
 
 ## 🎯 Problem
 
-Large-scale **Vehicle Routing Problems (VRP)** are computationally complex. Static routes can become inefficient when traffic conditions, road availability, vehicle status, or operational constraints change.
+Large-scale **Vehicle Routing Problems (VRP)** become highly complex when multiple vehicles need to serve many customers while satisfying capacity, demand, time-window, and route constraints. At the same time, real-world transportation conditions are constantly changing and static routes can become inefficient when traffic conditions, road availability, vehicle status, or operational constraints change.
+
+* 🚚 **Multiple vehicles & customers** create a huge number of possible route combinations.
+* 🚦 **Dynamic traffic & congestion** can make planned routes inefficient.
+* 🚧 **Accidents and road closures** can suddenly disrupt existing routes.
+* 📦 **Operational constraints** such as capacity, demand, and time windows must be satisfied.
+* ⚖️ **Travel time, distance, and congestion** need to be optimized together.
+
+**Core Challenge:** Efficiently generate feasible, near-optimal routes for multiple vehicles while continuously adapting to changing traffic and road conditions.
 
 Quantara combines **VRP optimization, weighted road networks, traffic-aware routing, and quantum-inspired metaheuristic optimization** to address these challenges.
 
