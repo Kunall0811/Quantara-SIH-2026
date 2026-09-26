@@ -396,9 +396,13 @@ Additional documentation covers:
 **Title:** Quantum-Inspired Intelligent Traffic Route Optimization in Transportation Systems Using Metaheuristic Optimization
 
 **Organization:** Egreen Quanta
+
 **Team:** TEAM HUSTLERS
+
 **Project:** Quantara
+
 **Category:** Software
+
 **Theme:** Transportation & Logistics
 
 ---
