@@ -35,9 +35,6 @@ export default defineConfig({
   preview: {
     host: '0.0.0.0',
     port: 8080,
-    allowedHosts: [
-      'quantara-sih-2026-production-54c7.up.railway.app',
-      'quantara-sih-2026-production-f9a1.up.railway.app',
-    ],
+    allowedHosts: true,
   },
 })
