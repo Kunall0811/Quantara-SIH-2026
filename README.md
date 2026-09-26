@@ -1,77 +1,403 @@
-# QUANTARA — Quantum-Inspired Transportation Digital Twin & Route Optimization Platform
+# 🚦 Quantara
 
-Built for Smart India Hackathon 2026 (PS-26137). Node/TypeScript backend, React/Vite frontend.
+### Quantum-Inspired Intelligent Traffic Route Optimization in Transportation Systems Using Metaheuristic Optimization
 
-**Honesty note up front:** "quantum-inspired" describes the *algorithm* (QPSO — Quantum-behaved Particle
-Swarm Optimization), not the *hardware*. Everything in this repository runs on ordinary CPUs. Nothing
-here uses, simulates in the quantum sense, or requires quantum hardware. See `docs/QPSO.md`.
+**SIH 2026 | Problem Statement 26137 | Transportation & Logistics**
 
-## What this is
+---
 
-A digital twin of a delivery fleet operating on a real, named road network (Pune-centred, 78 junctions,
-176 named roads / 352 directed edges), with:
+## 📌 Overview
 
-- Six real optimization algorithms (QPSO, Adaptive QPSO, PSO, GA, Simulated Annealing, an exact
-  exhaustive solver for small instances) sharing one objective function and one constraint set.
-- A stateful **Digital Twin** (`backend/src/twin/engine.ts`) that road closures, accidents, traffic
-  surges, vehicle breakdowns and weather changes are applied to, and that every plan is computed from.
-- **Scenario analysis** (what-if, resilience, regret, counterfactual, time-window risk) computed by
-  cloning the twin and re-simulating / re-optimizing — never by hard-coded multipliers.
-- Turn-by-turn **directions** derived from the actual path the optimizer evaluated on the graph.
-- An **actual-vs-predicted learning loop** that honestly reports "insufficient data" until it has enough
-  observations to say something.
-- **FRIDAY**, a tool-calling assistant with an on-device trained intent classifier (no LLM required) plus
-  optional Groq/Gemini for open-ended phrasing.
-- A **21-step SIH Demo Mode** that executes real backend calls end to end, for live presentation.
-- A **benchmark engine** (5 fixed seeds, Mann-Whitney U significance testing, hardware/fairness metadata)
-  and a **scalability test** (N = 10…500, measured, never estimated — sizes beyond a runtime budget are
-  reported `NOT EXECUTED` with the extrapolated reason, not silently estimated).
+**Quantara** is a quantum-inspired intelligent route optimization platform for **multi-vehicle transportation and logistics**.
 
-## Quick start
+It uses **Quantum Particle Swarm Optimization (QPSO)** with a traffic-aware transportation graph to optimize vehicle routes while considering:
 
-```bash
-cd backend && cp .env.example .env   # fill in JWT_SECRET at minimum; everything else is optional
-npm install
-npm run dev            # http://localhost:5000
+* 🚚 Multiple vehicles and customer locations
+* 📦 Customer demands and vehicle capacities
+* ⏱️ Time windows and route duration
+* 🛣️ Travel distance and travel time
+* 🚦 Traffic congestion and changing traffic conditions
+* 🚧 Road closures and incidents
+* 🔄 Dynamic route re-optimization
 
-cd ../frontend
-npm install
-npm run dev             # http://localhost:5173, proxies /api to :5000
+> ⚛️ **Quantum-inspired does not mean quantum hardware.** QPSO runs entirely on conventional computing hardware using quantum-behaved particle-swarm mathematics.
+
+---
+
+## 🎯 Problem
+
+Large-scale **Vehicle Routing Problems (VRP)** are computationally complex. Static routes can become inefficient when traffic conditions, road availability, vehicle status, or operational constraints change.
+
+Quantara combines **VRP optimization, weighted road networks, traffic-aware routing, and quantum-inspired metaheuristic optimization** to address these challenges.
+
+---
+
+## 💡 Solution Workflow
+
+```text
+Input Data
+    ↓
+Transportation Graph
+    ↓
+VRP Formulation
+    ↓
+QPSO Optimization
+    ↓
+Route Validation
+    ↓
+Multi-Vehicle Routes
+    ↓
+Performance Evaluation
+    ↓
+Benchmarking
+    ↓
+Dynamic Re-optimization
+    ↓
+Optimized Route Output
 ```
 
-Demo accounts are seeded automatically: `admin@qroute.in` / `admin123` (full access) and
-`citizen@qroute.in` / `citizen123` (read-only, delivery-status views).
+---
 
-Without `MONGODB_URI` set, the backend uses an in-memory store — fine for demos, but data does not
-survive a restart. Without `TOMTOM_API_KEY`, traffic and route geometry fall back to internal simulation
-(clearly labelled `SIMULATED` / `FALLBACK` everywhere in the UI and API, never presented as live data).
+## ⚛️ Core Optimization
 
-## Running the SIH demo
+### Quantum Particle Swarm Optimization — QPSO
 
-1. Open `/sih-demo` as an admin user.
-2. Press **Start demo**. All 21 steps run against the real twin, optimizer, scenario engine, learning
-   store and benchmark engine — nothing is scripted output. Use Pause/Resume/Next to control pacing live.
+QPSO is the primary optimization algorithm used to explore large route-search spaces and generate near-optimal routing solutions.
 
-## Tests
+The platform also supports comparative evaluation using:
 
-```bash
-cd backend && npm test        # 7 suites / 77 tests: algorithms, twin, FRIDAY, demo, API, security
-cd frontend && npx tsc -b && npx vite build   # typecheck + production build
+* ⚛️ QPSO
+* ⚛️ Adaptive QPSO
+* 🔵 PSO
+* 🧬 Genetic Algorithm (GA)
+* 🔥 Simulated Annealing (SA)
+* 🎯 Exact exhaustive solver for small instances
+
+All optimization methods use the same objective function and constraint framework for comparative evaluation.
+
+---
+
+## 🚚 Vehicle Routing
+
+Quantara supports multi-vehicle routing with:
+
+* 🏢 Depot
+* 📍 Multiple delivery locations
+* 🚛 Multiple vehicles
+* 📦 Customer demands
+* ⚖️ Vehicle capacity constraints
+* ⏰ Time-window constraints
+* 🔄 Route continuity
+* 🏁 Depot start and return
+* 🚧 Road availability constraints
+
+---
+
+## 🚦 Traffic-Aware Digital Twin
+
+The transportation network is represented as a **weighted road graph**. A stateful digital twin maintains changing transportation conditions used during planning and re-optimization.
+
+The system can model:
+
+* 🚦 Traffic surges
+* 🚧 Road closures
+* 🚨 Accidents/incidents
+* 🚛 Vehicle breakdowns
+* 🌧️ Weather changes
+* 🕐 Rush-hour conditions
+
+When conditions change, the system can update the transportation state and **re-optimize affected routes**.
+
+Traffic can use external TomTom data when configured, with internal simulation/fallback available for demonstrations.
+
+---
+
+## 📊 Optimization & Evaluation Metrics
+
+| Metric              | Purpose                           |
+| ------------------- | --------------------------------- |
+| ⏱️ Travel Time      | Evaluate total journey duration   |
+| 📏 Distance         | Evaluate total route distance     |
+| 🚦 Congestion       | Evaluate congestion-related cost  |
+| 📦 Feasibility      | Verify operational constraints    |
+| ⚡ Runtime          | Measure computational performance |
+| 📈 Solution Quality | Compare optimization results      |
+| 🔄 Convergence      | Analyze optimization progress     |
+| 📊 Scalability      | Evaluate increasing problem sizes |
+
+---
+
+## 🧪 Benchmarking & Validation
+
+Quantara provides systematic testing across multiple optimization and routing scenarios.
+
+### 🔬 Validation Areas
+
+* ✅ QPSO validation
+* ✅ Multi-vehicle VRP testing
+* ✅ Capacity constraint testing
+* ✅ Time-window testing
+* ✅ Dynamic traffic testing
+* ✅ Road-closure testing
+* ✅ Convergence analysis
+* ✅ Runtime analysis
+* ✅ Solution-quality comparison
+* ✅ Exact-method comparison for small instances
+* ✅ Scalability testing
+
+### 📈 Scalability
+
+```text
+10 → 25 → 50 → 100 → 250 → 500 → 1000
 ```
 
-## Documentation
+Problem sizes are evaluated based on actual execution where supported; cases beyond configured runtime limits are reported rather than silently estimated.
 
-- `docs/ARCHITECTURE.md` — how the pieces fit together (Digital Twin → Graph → Optimization → Route → Fleet → UI)
-- `docs/QPSO.md` — what QPSO/Adaptive QPSO actually are, and why they are not quantum computing
-- `docs/DIGITAL_TWIN.md` — the twin's state model and event/re-optimization flow
-- `docs/BENCHMARKING.md` — how the benchmark and scalability numbers are produced
-- `docs/FRIDAY.md` — the on-device classifier, tool registry, and LLM fallback
+---
 
-## Known limitations (stated honestly, not hidden)
+## 🗺️ Platform Features
 
-- Traffic is simulated unless a TomTom key is configured; the UI labels this everywhere.
-- The exact solver only runs up to 9 deliveries (factorial blow-up beyond that).
-- The actual-vs-predicted learning loop needs 20 observations before it reports trends; before that it
-  says so instead of guessing.
-- No air-quality provider is integrated; the Weather page reports AQI as unavailable rather than inventing
-  a number.
+* 🗺️ Interactive route visualization
+* 🚚 Multi-vehicle route display
+* 📍 Customer and depot management
+* 🚦 Traffic-aware optimization
+* 🔄 Dynamic re-routing
+* 📊 Performance metrics
+* 📈 Convergence visualization
+* 🧪 Algorithm benchmarking
+* 🧠 Scenario and what-if analysis
+* 🔐 Authentication
+* 📜 Optimization history
+* ⚙️ Configurable optimization parameters
+* 🤖 FRIDAY tool-calling assistant
+* 🎬 SIH Demo Mode
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* React
+* TypeScript
+* Vite
+* Map-based visualization
+
+### Backend
+
+* Node.js
+* Express
+* TypeScript
+* REST APIs
+
+### Optimization & Routing
+
+* QPSO
+* Adaptive QPSO
+* PSO
+* Genetic Algorithm
+* Simulated Annealing
+* Dijkstra / A*
+* Exact solver for small instances
+
+### Data & External Services
+
+* MongoDB
+* Socket.IO
+* TomTom Traffic API
+* OSRM
+* Open-Meteo
+* Groq
+* Gemini
+
+---
+
+## 📂 Project Structure
+
+```text
+qroute-node/
+│
+├── backend/
+│   ├── src/
+│   │   ├── algorithms/
+│   │   ├── services/
+│   │   ├── routes/
+│   │   ├── data/
+│   │   └── ...
+│   ├── .env.example
+│   └── package.json
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── documentation/
+│
+├── README.md
+└── .gitignore
+```
+
+---
+
+## 🚀 Quick Start
+
+### 1️⃣ Clone the Repository
+
+```bash
+git clone <YOUR_GITHUB_REPOSITORY_URL>
+cd qroute-node
+```
+
+### 2️⃣ Backend
+
+```bash
+cd backend
+cp .env.example .env
+npm install
+npm run dev
+```
+
+Backend runs on:
+
+```text
+http://localhost:5000
+```
+
+### 3️⃣ Frontend
+
+Open another terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Frontend runs on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🔐 Environment Variables
+
+Create `backend/.env` using `backend/.env.example`:
+
+```env
+JWT_SECRET=
+MONGODB_URI=
+TOMTOM_API_KEY=
+GROQ_API_KEY=
+GEMINI_API_KEY=
+```
+
+External services are optional where supported. Without MongoDB, the application can use an in-memory store for demonstrations.
+Without a TomTom API key, traffic and route data can fall back to the internal simulation.
+
+---
+
+## 👤 Demo Accounts
+
+The application provides seeded demonstration accounts:
+
+```text
+Admin:
+admin@qroute.in
+admin123
+
+Citizen:
+citizen@qroute.in
+citizen123
+```
+
+> ⚠️ These credentials are for local/demo use only.
+
+---
+
+## 🎬 SIH Demo Mode
+
+Quantara includes a dedicated **SIH Demo Mode** that executes the platform workflow through real backend functionality.
+
+```text
+Open /sih-demo
+      ↓
+Start Demo
+      ↓
+Backend Processing
+      ↓
+Digital Twin
+      ↓
+Optimization
+      ↓
+Scenario Analysis
+      ↓
+Benchmarking
+      ↓
+Results
+```
+
+---
+
+## 🧪 Testing
+
+### Backend
+
+```bash
+cd backend
+npm test
+```
+
+### Frontend
+
+```bash
+cd frontend
+npx tsc -b
+npx vite build
+```
+
+---
+
+## 📚 Documentation
+
+Additional documentation covers:
+
+* `docs/ARCHITECTURE.md` — system architecture
+* `docs/QPSO.md` — QPSO methodology
+* `docs/DIGITAL_TWIN.md` — digital-twin state and re-optimization flow
+* `docs/BENCHMARKING.md` — benchmarking and scalability methodology
+* `docs/FRIDAY.md` — FRIDAY assistant and tool registry
+
+---
+
+## ⚠️ Known Limitations
+
+* 🚦 Traffic is simulated unless a TomTom API key is configured.
+* 🎯 The exact solver is limited to small instances because exhaustive search grows factorially.
+* 📊 The actual-vs-predicted learning loop requires sufficient observations before reporting trends.
+* 🌫️ No dedicated air-quality provider is integrated; unavailable data is reported as unavailable rather than estimated.
+
+---
+
+## 🏆 Smart India Hackathon 2026
+
+**Problem Statement:** 26137
+
+**Title:** Quantum-Inspired Intelligent Traffic Route Optimization in Transportation Systems Using Metaheuristic Optimization
+
+**Organization:** Egreen Quanta
+**Team:** TEAM HUSTLERS
+**Project:** Quantara
+**Category:** Software
+**Theme:** Transportation & Logistics
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+---
+
