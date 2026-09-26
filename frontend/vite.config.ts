@@ -19,7 +19,7 @@ export default defineConfig({
 
   preview: {
     allowedHosts: [
-      'quantara-sih-2026-production-f956.up.railway.app'
+      'quantara-sih-2026-production-f9a1.up.railway.app'
     ],
   },
 
