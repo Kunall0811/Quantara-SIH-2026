@@ -21,11 +21,16 @@ export default defineConfig(({ mode }) => {
     },
 
     preview: {
-      proxy: {
-        '/api': {
-          target: API_URL,
-          changeOrigin: true,
-          secure: true,
+      proxy: {preview: {
+  allowedHosts: true,
+  proxy: {
+    '/api': {
+      target: API_URL,
+      changeOrigin: true,
+      secure: true,
+    },
+  },
+},
         },
       },
     },
