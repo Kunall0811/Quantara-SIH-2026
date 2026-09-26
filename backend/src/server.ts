@@ -16,11 +16,11 @@ async function main() {
   const server = http.createServer(app);
   initSocket(server);
 
-  server.listen(env.PORT, () => {
-    console.log(`\n🚦 Q-ROUTE INDIA backend running on http://localhost:${env.PORT}`);
-    console.log(`   Health check: http://localhost:${env.PORT}/api/health`);
-    console.log(`   Frontend CORS origin: ${env.FRONTEND_URL}\n`);
-  });
+  server.listen(env.PORT, '0.0.0.0', () => {
+  console.log(`\n🚦 Q-ROUTE INDIA backend running on http://0.0.0.0:${env.PORT}`);
+  console.log(`   Health check: http://0.0.0.0:${env.PORT}/api/health`);
+  console.log(`   Frontend CORS origin: ${env.FRONTEND_URL}\n`);
+});
 
   // background traffic drift + broadcast, so connected dashboards see
   // gentle live-feeling changes without any manual trigger
