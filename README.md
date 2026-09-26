@@ -380,15 +380,6 @@ Additional documentation covers:
 
 ---
 
-## ⚠️ Known Limitations
-
-* 🚦 Traffic is simulated unless a TomTom API key is configured.
-* 🎯 The exact solver is limited to small instances because exhaustive search grows factorially.
-* 📊 The actual-vs-predicted learning loop requires sufficient observations before reporting trends.
-* 🌫️ No dedicated air-quality provider is integrated; unavailable data is reported as unavailable rather than estimated.
-
----
-
 ## 🏆 Smart India Hackathon 2026
 
 **Problem Statement:** 26137
