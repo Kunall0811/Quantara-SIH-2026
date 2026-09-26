@@ -55,4 +55,4 @@ Implemented in `backend/src/optimization/constraints.ts`:
 
 ## CONCLUSION
 
-The platform is 100% compliant with SIH PS 26137.
+**Overall SIH PS 26137 Alignment: HIGH / ~95%**
