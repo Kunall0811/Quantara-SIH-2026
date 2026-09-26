@@ -55,4 +55,4 @@ Implemented in `backend/src/optimization/constraints.ts`:
 
 ## CONCLUSION
 
-**Overall SIH PS 26137 Alignment: HIGH / ~95%**
+**Overall SIH PS 26137 Alignment: HIGH (~95%**)
