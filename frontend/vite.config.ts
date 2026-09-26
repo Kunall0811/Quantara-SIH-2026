@@ -5,36 +5,39 @@ export default defineConfig({
   plugins: [react()],
 
   build: {
-    // MapLibre GL alone is ~800 kB minified; it is isolated in its own lazily-loaded chunk.
     chunkSizeWarningLimit: 900,
     rollupOptions: {
       output: {
         manualChunks: {
           maplibre: ['maplibre-gl'],
-          charts: ['recharts']
-        }
-      }
+          charts: ['recharts'],
+        },
+      },
     },
-  },
-
-  preview: {
-    allowedHosts: [
-      'quantara-sih-2026-production-f9a1.up.railway.app'
-    ],
   },
 
   server: {
     host: '0.0.0.0',
     port: 5173,
+
     proxy: {
       '/api': {
         target: 'http://localhost:5000',
-        changeOrigin: true
+        changeOrigin: true,
       },
       '/socket.io': {
         target: 'http://localhost:5000',
-        ws: true
+        ws: true,
       },
     },
+  },
+
+  preview: {
+    host: '0.0.0.0',
+    port: 8080,
+    allowedHosts: [
+      'quantara-sih-2026-production-54c7.up.railway.app',
+      'quantara-frontend-production-f9a1.up.railway.app',
+    ],
   },
 })
