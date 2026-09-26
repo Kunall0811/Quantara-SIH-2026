@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body, #root { height: 100%; }
+
+body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,153,51,0.07), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(34,211,238,0.08), transparent 60%),
+    radial-gradient(900px 500px at 50% 110%, rgba(19,136,8,0.06), transparent 60%),
+    #050810;
+}
+
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #1c2942; border-radius: 8px; }
+::-webkit-scrollbar-thumb:hover { background: #26314a; }
+
+.glass {
+  background: linear-gradient(180deg, rgba(19,28,48,0.75), rgba(10,15,26,0.65));
+  border: 1px solid rgba(148,163,184,0.10);
+  backdrop-filter: blur(14px);
+}
+.glass-strong {
+  background: linear-gradient(180deg, rgba(19,28,48,0.92), rgba(10,15,26,0.9));
+  border: 1px solid rgba(148,163,184,0.14);
+  backdrop-filter: blur(18px);
+}
+
+.kpi-value { font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.02em; }
+
+.grid-overlay {
+  background-image:
+    linear-gradient(rgba(148,163,184,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148,163,184,0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(34,211,238,0.5); }
+  70% { box-shadow: 0 0 0 12px rgba(34,211,238,0); }
+  100% { box-shadow: 0 0 0 0 rgba(34,211,238,0); }
+}
+.pulse-ring { animation: pulse-ring 2s infinite; }
+
+@keyframes orbit { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.orbit-spin { animation: orbit 12s linear infinite; transform-origin: center; }
+.orbit-spin-rev { animation: orbit 18s linear infinite reverse; transform-origin: center; }
+
+@keyframes dash-flow { to { stroke-dashoffset: -200; } }
+.route-flow { stroke-dasharray: 8 6; animation: dash-flow 4s linear infinite; }
+
+@keyframes float-y { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.float-y { animation: float-y 4s ease-in-out infinite; }
+
+.maplibregl-ctrl-attrib { font-size: 10px; opacity: 0.6; }
+.maplibregl-popup-content {
+  background: #0e1524 !important; color: #e2e8f0 !important;
+  border: 1px solid rgba(148,163,184,0.15); border-radius: 10px !important;
+}
+.maplibregl-popup-tip { border-top-color: #0e1524 !important; border-bottom-color: #0e1524 !important; }
+
+/* QUANTARA day/night adaptive shell */
+html[data-mode='day'] body {
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(255,153,51,0.10), transparent 60%),
+    radial-gradient(1000px 500px at 100% 0%, rgba(34,211,238,0.10), transparent 60%),
+    #08111b;
+}
+html[data-mode='day'] .glass { background: linear-gradient(180deg, rgba(22,35,52,0.86), rgba(12,21,32,0.78)); }
+html[data-mode='day'] .glass-strong { background: linear-gradient(180deg, rgba(24,39,57,0.94), rgba(10,18,28,0.92)); }
+html[data-mode='night'] body { background: radial-gradient(1000px 600px at 100% 0%, rgba(67,56,202,0.10), transparent 55%), #02040a; }
+html[data-mode='night'] .glass { background: linear-gradient(180deg, rgba(12,18,31,0.84), rgba(4,8,15,0.82)); }
+html[data-mode='night'] .glass-strong { background: linear-gradient(180deg, rgba(13,20,35,0.96), rgba(3,6,12,0.96)); }
+.maplibregl-canvas { touch-action: none; }
+
+/* Command-center map chrome */
+.maplibregl-ctrl-group { background: rgba(8,15,25,.82) !important; border: 1px solid rgba(148,163,184,.14) !important; border-radius: 10px !important; overflow: hidden; }
+.maplibregl-ctrl-group button { filter: invert(.9); }
+html[data-mode='day'] .maplibregl-ctrl-group { background: rgba(255,255,255,.88) !important; }
+html[data-mode='day'] .maplibregl-ctrl-group button { filter: none; }
+
+/* Global dropdown/select styling to prevent white backgrounds */
+select {
+  color-scheme: dark;
+}
+select option {
+  background-color: #0f172a; /* slate-900 */
+  color: #e2e8f0; /* slate-200 */
+}
+html[data-mode='day'] select {
+  color-scheme: light;
+}
+html[data-mode='day'] select option {
+  background-color: #f8fafc; /* slate-50 */
+  color: #0f172a; /* slate-900 */
+}

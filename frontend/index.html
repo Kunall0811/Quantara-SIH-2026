@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QUANTARA | Quantum-Inspired Fleet Intelligence</title>
+    <meta name="description" content="India-focused quantum-inspired fleet routing and transportation intelligence platform for SIH26137." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Unique QUANTARA app icon + PWA manifest -->
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/icons/icon-16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#03111b" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="QUANTARA" />
+  </head>
+  <body class="bg-base-950 text-slate-100 font-body">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      window.addEventListener('error', function(event) {
+        var errDiv = document.createElement('div');
+        errDiv.style.position = 'fixed';
+        errDiv.style.top = '0';
+        errDiv.style.left = '0';
+        errDiv.style.zIndex = '999999';
+        errDiv.style.background = 'rgba(255,0,0,0.8)';
+        errDiv.style.color = 'white';
+        errDiv.style.padding = '20px';
+        errDiv.style.fontFamily = 'monospace';
+        errDiv.innerHTML = '<h2>CRASH DETECTED</h2><p>' + event.error.message + '</p><pre>' + event.error.stack + '</pre>';
+        document.body.appendChild(errDiv);
+      });
+    </script>
+  </body>
+</html>

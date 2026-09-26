@@ -1,0 +1,18 @@
+import { Router } from 'express';
+import * as ctrl from '../controllers/optimizationController';
+import { requireAuth, requireRole } from '../middleware/auth';
+const router=Router();
+router.use(requireAuth,requireRole('admin'));
+router.post('/qpso',ctrl.runSpecificAlgorithm('QPSO'));
+router.post('/adaptive-qpso',ctrl.runSpecificAlgorithm('AQPSO'));
+router.post('/pso',ctrl.runSpecificAlgorithm('PSO'));
+router.post('/genetic',ctrl.runSpecificAlgorithm('GA'));
+router.post('/simulated-annealing',ctrl.runSpecificAlgorithm('SA'));
+router.post('/exact',ctrl.runSpecificAlgorithm('EXACT'));
+router.post('/vrp-run', ctrl.runVrpOptimization);
+router.post('/benchmark',ctrl.benchmark);
+router.get('/algorithms',ctrl.listAlgorithms);
+router.get('/benchmark/latest',ctrl.latestBenchmark);
+router.get('/results',ctrl.listResults);
+router.get('/:id',ctrl.getResult);
+export default router;

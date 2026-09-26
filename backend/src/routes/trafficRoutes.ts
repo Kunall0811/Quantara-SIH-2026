@@ -1,0 +1,11 @@
+import { Router } from 'express';
+import * as ctrl from '../controllers/miscControllers';
+import { requireAuth, requireRole } from '../middleware/auth';
+const router=Router();
+router.get('/',requireAuth,ctrl.trafficStatus);
+router.get('/flow',requireAuth,ctrl.trafficFlow);
+router.get('/incidents',requireAuth,ctrl.trafficIncidents);
+router.post('/simulate',requireAuth,requireRole('admin'),ctrl.trafficSimulate);
+router.post('/incidents/manual',requireAuth,requireRole('admin'),ctrl.createManualIncident);
+router.post('/incidents/:id/resolve',requireAuth,requireRole('admin'),ctrl.resolveIncidentHandler);
+export default router;

@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import { requireAuth, requireRole } from '../middleware/auth';
+import * as ctrl from '../controllers/fleetController';
+const router = Router();
+router.get('/', requireAuth, ctrl.list);
+router.get('/:id', requireAuth, ctrl.getOne);
+router.post('/citizen/gps', requireAuth, ctrl.citizenGps);
+router.post('/citizen/status', requireAuth, ctrl.citizenStatus);
+router.post('/:id/gps', requireAuth, ctrl.gps);
+router.post('/:id/mission', requireAuth, requireRole('admin'), ctrl.startVehicleMission);
+router.post('/:id/mission/cancel', requireAuth, requireRole('admin'), ctrl.cancelVehicleMission);
+export default router;

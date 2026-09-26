@@ -1,0 +1,12 @@
+import { Router } from 'express';
+import * as ctrl from '../controllers/routesController';
+import { runOptimization } from '../controllers/optimizationController';
+import { requireAuth, requireRole } from '../middleware/auth';
+const router=Router();
+router.post('/calculate',requireAuth,ctrl.calculate);
+router.post('/calculate-through',requireAuth,ctrl.calculateThrough);
+router.post('/optimize',requireAuth,requireRole('admin'),runOptimization);
+router.post('/save',requireAuth,ctrl.save);
+router.get('/history',requireAuth,ctrl.history);
+router.get('/:id',requireAuth,ctrl.getById);
+export default router;

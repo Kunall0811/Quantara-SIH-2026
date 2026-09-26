@@ -1,0 +1,32 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1c2e"/>
+      <stop offset="1" stop-color="#03111b"/>
+    </linearGradient>
+    <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.42" r="0.62">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22d3ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- rounded-square app tile -->
+  <rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bg)"/>
+  <circle cx="256" cy="215" r="190" fill="url(#glow)"/>
+
+  <!-- Q body: quantum orbit ring -->
+  <circle cx="230" cy="222" r="120" fill="none" stroke="url(#ring)" stroke-width="30"/>
+  <!-- tilted secondary orbit for a "quantum" feel -->
+  <ellipse cx="230" cy="222" rx="150" ry="62" fill="none" stroke="#a78bfa" stroke-width="10" stroke-opacity="0.55" transform="rotate(-28 230 222)"/>
+
+  <!-- Q tail becomes a route/navigation arrow, in saffron -->
+  <path d="M298 300 L392 396 L392 340 L436 384" fill="none" stroke="#ff9933" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- quantum orbiting node -->
+  <circle cx="352" cy="132" r="17" fill="#22d3ee"/>
+  <circle cx="356" cy="128" r="7" fill="#eafcff"/>
+</svg>
